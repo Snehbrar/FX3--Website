@@ -68,52 +68,8 @@
     tc.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}:${pad(f % 24)}`;
   }, 1000 / 24);
 
-  /* ---------- Camera: scroll to explode, tap to learn ---------- */
-  const cam = $(".cam");
-  const fitCam = () => cam.setAttribute("viewBox", innerWidth < 760 ? "20 50 1170 560" : "0 0 1200 640");
-  fitCam(); addEventListener("resize", fitCam);
-  const hint = $("[data-hint]");
-  let pinned = false;
-  const parts = {
-    lens: ["Lens", "Gathers light and bends it onto the sensor.", "Its focal length, in millimetres, sets how wide or tight the shot is. 24mm feels open and spacious; 85mm feels close and personal."],
-    elements: ["Glass elements", "Shaped pieces of glass stacked inside the lens.", "Together they bring the picture into focus and cancel out distortion and colour fringing. Turning the focus ring slides some of them back and forth."],
-    aperture: ["Aperture", "Thin blades that open and close like the pupil of an eye.", "It's measured in f-stops. A small number like f/1.4 is wide open: more light and a soft, blurry background. f/16 is a pinhole: darker, with everything sharp."],
-    mount: ["Mount", "The metal ring where the lens locks onto the body.", "Gold contacts pass focus and aperture data between lens and camera. The FX3 uses Sony's E-mount, so any E-mount lens fits."],
-    shutter: ["Shutter", "Decides how long each frame soaks up light.", "For video, a common rule is double your frame rate: 1/50 of a second at 24 fps gives natural motion blur. Faster speeds freeze motion and look crisp, even choppy."],
-    sensor: ["Sensor", "The chip that turns light into the picture.", "The FX3 has a full-frame sensor, about the size of a 35mm film frame, with 12.1 megapixels. Fewer, larger pixels mean cleaner footage when the light is low."],
-    body: ["Body and fan", "Holds the processor, memory cards and battery.", "The FX3 has a built-in fan behind those vents, so it can record for hours without overheating. The red tally lights tell everyone it's recording."],
-    handle: ["Top handle", "A detachable handle with professional audio inputs.", "Its two XLR inputs take the same microphones used in film and broadcast, so clean sound goes straight into the camera."],
-    screen: ["Screen", "A flip-out touchscreen for framing the shot.", "It swings out to the side and tilts, so you can frame from high, low, or facing yourself. Tap it to choose what to focus on."],
-  };
-  const cardName = $("[data-part-name]"), cardWhat = $("[data-part-what]"), cardWhy = $("[data-part-why]");
-  const chips = $$(".chips button");
-
-  function camera(p) {
-    if (p < .04 && pinned) { pinned = false; cam.classList.remove("pinned"); }
-    const e = reduce || pinned ? 1 : ease(clamp((p - .06) / .5));
-    cam.style.setProperty("--e", e.toFixed(4));
-    hint.textContent = e > .95 ? "Tap any part to see what it does." : "Keep scrolling. It opens up.";
-  }
-
-  function select(name) {
-    const same = cam.dataset.active === name;
-    $$(".part, .labels g", cam).forEach((el) => el.classList.toggle("is-on", !same && (el.dataset.part || el.dataset.for) === name));
-    chips.forEach((c) => c.setAttribute("aria-pressed", String(!same && c.dataset.part === name)));
-    if (same) {
-      delete cam.dataset.active;
-      cardName.textContent = "Tap a part"; cardWhat.textContent = "Each piece has one job. Pick one to see what it does."; cardWhy.textContent = "";
-      return;
-    }
-    cam.dataset.active = name;
-    const [n, w, y] = parts[name];
-    cardName.textContent = n; cardWhat.textContent = w; cardWhy.textContent = y;
-    if (!pinned) { pinned = true; cam.classList.add("pinned"); cam.style.setProperty("--e", 1); }
-  }
-  chips.forEach((c) => c.addEventListener("click", () => select(c.dataset.part)));
-  $$(".part", cam).forEach((g) => g.addEventListener("click", () => select(g.dataset.part)));
-
   /* ---------- Scroll engine ---------- */
-  const handlers = { story, camera };
+  const handlers = { story };
   const sticky = $$("[data-scrolly]");
   let ticking = false;
   function update() {

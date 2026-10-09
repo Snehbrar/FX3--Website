@@ -9,6 +9,8 @@
 <meta property="og:title" content="afilmbyjshn">
 <meta property="og:description" content="Film and video from Vancouver, Canada. Portfolio coming soon.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c3557'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23fff' stroke-width='5'/%3E%3Ccircle cx='46' cy='18' r='5' fill='%23d52b1e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -347,135 +349,63 @@
   </div>
 </section>
 
-<!-- THE CAMERA: scroll to explode, tap to learn -->
-<section class="camera" id="camera" data-nav="dark" data-scrolly="camera" aria-label="The camera, part by part">
-  <div class="camera-stage">
-    <div class="camera-head">
-      <h2>Take the camera apart.</h2>
-      <p class="camera-hint" data-hint>Keep scrolling. It opens up.</p>
+<!-- THE CAMERA: real-time 3D studio -->
+<section class="studio" id="camera" data-nav="dark" aria-label="FX3, taken apart">
+  <div class="studio-stage">
+    <canvas class="studio-canvas" role="img" aria-label="Interactive 3D model of a Sony FX3 cinema camera. Scroll to separate its parts, drag to turn it."></canvas>
+    <canvas class="studio-flare" aria-hidden="true"></canvas>
+    <svg class="lead-layer" aria-hidden="true"><line class="lead" x1="0" y1="0" x2="0" y2="0"/></svg>
+    <div class="hot-layer"></div>
+
+    <header class="studio-head">
+      <h2>FX3, taken apart.</h2>
+    </header>
+    <p class="studio-hint" data-hint><span class="h-a">Scroll to separate it. Drag to turn it.</span><span class="h-b">Hover or tap a marker to inspect a part.</span></p>
+
+    <div class="hud hud-tl" aria-hidden="true">
+      <span class="hud-model">ILME-FX3</span>
+      <span>Full-frame Cinema Line</span>
+      <span>E-mount / BIONZ XR</span>
+    </div>
+    <div class="hud hud-tr" aria-hidden="true">
+      <span><b>Sep</b><em data-r="sep">000%</em></span>
+      <span><b>Az</b><em data-r="az">041&deg;</em></span>
+      <span><b>El</b><em data-r="el">+15&deg;</em></span>
+      <span><b>Fan</b><em data-r="fan">AUTO</em></span>
+      <span class="hud-rec"><i></i>Tally</span>
     </div>
 
-    <svg class="cam" viewBox="0 0 1200 640" role="img" aria-label="Exploded view of a compact cinema camera">
-      <defs>
-        <linearGradient id="kBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#45464c"/><stop offset=".5" stop-color="#2b2c31"/><stop offset="1" stop-color="#1b1c20"/></linearGradient>
-        <linearGradient id="kMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6e9ee"/><stop offset=".45" stop-color="#9aa1ab"/><stop offset=".55" stop-color="#7d848e"/><stop offset="1" stop-color="#cfd4da"/></linearGradient>
-        <linearGradient id="kBarrel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3b40"/><stop offset=".5" stop-color="#1f2024"/><stop offset="1" stop-color="#141417"/></linearGradient>
-        <radialGradient id="kGlass" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#8b7cf0"/><stop offset=".35" stop-color="#3a4fa8"/><stop offset=".75" stop-color="#121a3a"/><stop offset="1" stop-color="#05070f"/></radialGradient>
-        <linearGradient id="kEl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe9ff" stop-opacity=".9"/><stop offset=".5" stop-color="#7fa8e6" stop-opacity=".55"/><stop offset="1" stop-color="#b48cf2" stop-opacity=".8"/></linearGradient>
-        <linearGradient id="kSensor" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b3a8c"/><stop offset=".35" stop-color="#2d6f8f"/><stop offset=".65" stop-color="#3c8a6a"/><stop offset="1" stop-color="#9a7a3a"/></linearGradient>
-        <linearGradient id="kScreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fb4d8"/><stop offset=".7" stop-color="#f6cfa8"/></linearGradient>
-      </defs>
+    <aside class="inspector" hidden aria-live="polite">
+      <h3></h3>
+      <dl></dl>
+    </aside>
 
-      <!-- Sensor (comes out of the body) -->
-      <g class="part pt-sensor" data-part="sensor">
-        <rect x="778" y="470" width="124" height="90" rx="6" fill="#1a1d24" stroke="#3a3f4a"/>
-        <g fill="#c9a24a"><rect x="786" y="466" width="4" height="6"/><rect x="786" y="558" width="4" height="6"/><rect x="794" y="466" width="4" height="6"/><rect x="794" y="558" width="4" height="6"/><rect x="802" y="466" width="4" height="6"/><rect x="802" y="558" width="4" height="6"/><rect x="810" y="466" width="4" height="6"/><rect x="810" y="558" width="4" height="6"/><rect x="818" y="466" width="4" height="6"/><rect x="818" y="558" width="4" height="6"/><rect x="826" y="466" width="4" height="6"/><rect x="826" y="558" width="4" height="6"/><rect x="834" y="466" width="4" height="6"/><rect x="834" y="558" width="4" height="6"/><rect x="842" y="466" width="4" height="6"/><rect x="842" y="558" width="4" height="6"/><rect x="850" y="466" width="4" height="6"/><rect x="850" y="558" width="4" height="6"/><rect x="858" y="466" width="4" height="6"/><rect x="858" y="558" width="4" height="6"/><rect x="866" y="466" width="4" height="6"/><rect x="866" y="558" width="4" height="6"/><rect x="874" y="466" width="4" height="6"/><rect x="874" y="558" width="4" height="6"/><rect x="882" y="466" width="4" height="6"/><rect x="882" y="558" width="4" height="6"/><rect x="890" y="466" width="4" height="6"/><rect x="890" y="558" width="4" height="6"/></g>
-        <rect x="794" y="482" width="92" height="66" rx="3" fill="url(#kSensor)"/>
-        <rect x="794" y="482" width="92" height="66" rx="3" fill="#fff" opacity=".08"/>
-      </g>
-      <!-- Shutter -->
-      <g class="part pt-shutter" data-part="shutter">
-        <rect x="638" y="470" width="124" height="90" rx="6" fill="#26272c" stroke="#3a3f4a"/>
-        <g fill="#5b616b">
-          <rect x="652" y="482" width="96" height="10" rx="1"/><rect x="652" y="494" width="96" height="10" rx="1"/>
-          <rect x="652" y="506" width="96" height="10" rx="1"/><rect x="652" y="518" width="96" height="10" rx="1"/>
-          <rect x="652" y="530" width="96" height="10" rx="1"/>
-        </g>
-        <rect x="652" y="542" width="96" height="6" fill="#0e0f12"/>
-      </g>
-      <!-- Aperture iris (comes out of the lens) -->
-      <g class="part pt-aperture" data-part="aperture">
-        <g transform="translate(300,112)">
-          <circle r="60" fill="#2a2b30" stroke="#6d737d" stroke-width="2"/>
-          <polygon points="20.0,0.0 12.5,15.6 -4.5,19.5 -18.0,8.7 -18.0,-8.7 -4.5,-19.5 12.5,-15.6" fill="#9ec3ff"/>
-          <g fill="#45474e" stroke="#2a2b30" stroke-width="1.2"><path d="M20.0,0.0 L12.5,15.6 Q13.5,48.6 52.0,0.0 Z"/><path d="M12.5,15.6 L-4.5,19.5 Q-29.6,40.8 32.4,40.7 Z"/><path d="M-4.5,19.5 L-18.0,8.7 Q-50.3,2.3 -11.6,50.7 Z"/><path d="M-18.0,8.7 L-18.0,-8.7 Q-33.2,-37.9 -46.9,22.6 Z"/><path d="M-18.0,-8.7 L-4.5,-19.5 Q8.9,-49.6 -46.9,-22.6 Z"/><path d="M-4.5,-19.5 L12.5,-15.6 Q44.3,-24.0 -11.6,-50.7 Z"/><path d="M12.5,-15.6 L20.0,-0.0 Q46.4,19.7 32.4,-40.7 Z"/></g>
-          <circle r="60" fill="none" stroke="url(#kMetal)" stroke-width="5"/>
-        </g>
-      </g>
-      <!-- Glass elements (slide out of the lens front) -->
-      <g class="part pt-elements" data-part="elements">
-        <ellipse class="el el1" cx="52" cy="320" rx="13" ry="66" fill="url(#kEl)" stroke="#d9ecff" stroke-opacity=".6"/>
-        <ellipse class="el el2" cx="118" cy="320" rx="16" ry="58" fill="url(#kEl)" stroke="#d9ecff" stroke-opacity=".6"/>
-        <ellipse class="el el3" cx="182" cy="320" rx="11" ry="50" fill="url(#kEl)" stroke="#d9ecff" stroke-opacity=".6"/>
-      </g>
-      <!-- Lens -->
-      <g class="part pt-lens" data-part="lens">
-        <path d="M360,236 L396,246 L396,394 L360,404 Z" fill="url(#kBarrel)"/>
-        <rect x="392" y="246" width="210" height="148" rx="8" fill="url(#kBarrel)"/>
-        <rect x="420" y="242" width="84" height="156" rx="6" fill="#1a1a1d"/>
-        <g fill="#2e2f34"><rect x="424" y="244" width="2.4" height="152"/><rect x="429" y="244" width="2.4" height="152"/><rect x="434" y="244" width="2.4" height="152"/><rect x="439" y="244" width="2.4" height="152"/><rect x="444" y="244" width="2.4" height="152"/><rect x="449" y="244" width="2.4" height="152"/><rect x="454" y="244" width="2.4" height="152"/><rect x="459" y="244" width="2.4" height="152"/><rect x="464" y="244" width="2.4" height="152"/><rect x="469" y="244" width="2.4" height="152"/><rect x="474" y="244" width="2.4" height="152"/><rect x="479" y="244" width="2.4" height="152"/><rect x="484" y="244" width="2.4" height="152"/><rect x="489" y="244" width="2.4" height="152"/><rect x="494" y="244" width="2.4" height="152"/><rect x="499" y="244" width="2.4" height="152"/></g>
-        <rect x="520" y="244" width="58" height="152" rx="5" fill="#26272b"/>
-        <g stroke="#9aa1ab" stroke-width="1.6"><line x1="530" y1="252" x2="530" y2="262"/><line x1="542" y1="252" x2="542" y2="258"/><line x1="554" y1="252" x2="554" y2="262"/><line x1="566" y1="252" x2="566" y2="258"/></g>
-        <rect x="586" y="250" width="3" height="10" fill="#f5f5f7"/>
-        <ellipse cx="362" cy="320" rx="13" ry="78" fill="url(#kGlass)"/>
-        <ellipse cx="358" cy="292" rx="4" ry="16" fill="#fff" opacity=".35"/>
-      </g>
-      <!-- Mount -->
-      <g class="part pt-mount" data-part="mount">
-        <rect x="600" y="232" width="22" height="176" rx="4" fill="url(#kMetal)"/>
-        <rect x="604" y="256" width="14" height="8" fill="#6d737d"/><rect x="604" y="376" width="14" height="8" fill="#6d737d"/>
-        <g fill="#c9a24a"><rect x="616" y="300" width="4" height="5"/><rect x="616" y="310" width="4" height="5"/><rect x="616" y="320" width="4" height="5"/><rect x="616" y="330" width="4" height="5"/></g>
-      </g>
-      <!-- Body -->
-      <g class="part pt-body" data-part="body">
-        <rect x="620" y="220" width="300" height="200" rx="18" fill="url(#kBody)"/>
-        <rect x="620" y="220" width="300" height="200" rx="18" fill="none" stroke="#55575e"/>
-        <g fill="#141518"><rect x="690" y="270" width="7" height="86" rx="3.5"/><rect x="708" y="270" width="7" height="86" rx="3.5"/><rect x="726" y="270" width="7" height="86" rx="3.5"/><rect x="744" y="270" width="7" height="86" rx="3.5"/><rect x="762" y="270" width="7" height="86" rx="3.5"/><rect x="780" y="270" width="7" height="86" rx="3.5"/><rect x="798" y="270" width="7" height="86" rx="3.5"/><rect x="816" y="270" width="7" height="86" rx="3.5"/><rect x="834" y="270" width="7" height="86" rx="3.5"/></g>
-        <rect x="640" y="380" width="80" height="22" rx="4" fill="#1a1b1f"/>
-        <circle cx="636" cy="236" r="4.5" fill="#d52b1e" class="tally"/>
-        <rect x="700" y="210" width="40" height="12" rx="4" fill="#3a3b40"/>
-        <rect x="770" y="206" width="54" height="16" rx="6" fill="#4a4b51"/>
-        <circle cx="880" cy="212" r="12" fill="#2d2e33" stroke="#d52b1e" stroke-width="3"/>
-      </g>
-      <!-- Screen (swings out to the side) -->
-      <g class="part pt-screen" data-part="screen">
-        <rect x="0" y="0" width="130" height="150" rx="10" fill="#111214" stroke="#3a3b40"/>
-        <rect x="8" y="10" width="114" height="130" rx="4" fill="url(#kScreen)"/>
-        <path d="M8,108 L34,86 L52,96 L76,72 L98,92 L122,84 L122,140 L8,140 Z" fill="#5b6f8c"/>
-        <circle cx="20" cy="22" r="4" fill="#d52b1e"/>
-      </g>
-      <!-- Top handle with XLR -->
-      <g class="part pt-handle" data-part="handle">
-        <rect x="656" y="158" width="228" height="24" rx="12" fill="url(#kBody)" stroke="#55575e"/>
-        <rect x="846" y="170" width="26" height="50" rx="5" fill="#2b2c31"/>
-        <rect x="640" y="168" width="78" height="52" rx="8" fill="#2b2c31" stroke="#55575e"/>
-        <circle cx="662" cy="194" r="12" fill="#121316" stroke="#7d848e" stroke-width="2"/>
-        <circle cx="696" cy="194" r="12" fill="#121316" stroke="#7d848e" stroke-width="2"/>
-        <g fill="#9aa1ab"><circle cx="658" cy="191" r="2"/><circle cx="666" cy="191" r="2"/><circle cx="662" cy="199" r="2"/><circle cx="692" cy="191" r="2"/><circle cx="700" cy="191" r="2"/><circle cx="696" cy="199" r="2"/></g>
-      </g>
-
-      <!-- Labels (desktop) -->
-      <g class="labels" aria-hidden="true">
-        <g data-for="elements"><line x1="117" y1="392" x2="117" y2="426"/><text x="117" y="452">Glass elements</text></g>
-        <g data-for="lens"><line x1="330" y1="400" x2="330" y2="426"/><text x="330" y="452">Lens</text></g>
-        <g data-for="aperture"><line x1="364" y1="112" x2="400" y2="112"/><text x="410" y="119" text-anchor="start">Aperture</text></g>
-        <g data-for="mount"><line x1="556" y1="414" x2="556" y2="470"/><text x="556" y="496">Mount</text></g>
-        <g data-for="shutter"><line x1="700" y1="566" x2="700" y2="584"/><text x="700" y="610">Shutter</text></g>
-        <g data-for="sensor"><line x1="840" y1="566" x2="840" y2="584"/><text x="840" y="610">Sensor</text></g>
-        <g data-for="handle"><line x1="890" y1="75" x2="930" y2="75"/><text x="940" y="82" text-anchor="start">Top handle</text></g>
-        <g data-for="screen"><line x1="1095" y1="402" x2="1095" y2="426"/><text x="1095" y="452">Screen</text></g>
-        <g data-for="body"><text x="770" y="400" class="on-body">Body and fan</text></g>
-      </g>
-    </svg>
-
-    <div class="parts">
-      <div class="chips" role="group" aria-label="Camera parts">
-        <button type="button" data-part="lens" aria-pressed="false">Lens</button>
-        <button type="button" data-part="elements" aria-pressed="false">Glass elements</button>
-        <button type="button" data-part="aperture" aria-pressed="false">Aperture</button>
-        <button type="button" data-part="mount" aria-pressed="false">Mount</button>
-        <button type="button" data-part="shutter" aria-pressed="false">Shutter</button>
-        <button type="button" data-part="sensor" aria-pressed="false">Sensor</button>
-        <button type="button" data-part="body" aria-pressed="false">Body and fan</button>
-        <button type="button" data-part="handle" aria-pressed="false">Top handle</button>
-        <button type="button" data-part="screen" aria-pressed="false">Screen</button>
+    <div class="studio-controls">
+      <div class="seg" role="group" aria-label="Viewing angle">
+        <button type="button" data-view="overview" aria-pressed="true">Overview</button>
+        <button type="button" data-view="top" aria-pressed="false">Top</button>
+        <button type="button" data-view="mount" aria-pressed="false">Mount</button>
+        <button type="button" data-view="cooling" aria-pressed="false">Cooling</button>
+        <button type="button" data-view="rear" aria-pressed="false">Rear</button>
       </div>
-      <div class="part-card" aria-live="polite">
-        <h3 data-part-name>Tap a part</h3>
-        <p data-part-what>Each piece has one job. Pick one to see what it does.</p>
-        <p class="part-why" data-part-why></p>
+      <div class="switches">
+        <button type="button" class="switch" data-toggle="tally" aria-pressed="true"><span class="sw" aria-hidden="true"></span>Tally</button>
+        <button type="button" class="switch" data-toggle="fan" aria-pressed="true"><span class="sw" aria-hidden="true"></span>Fan</button>
       </div>
     </div>
+    <p class="no-gl-msg">This 3D view needs WebGL, which is turned off in this browser.</p>
+  </div>
+</section>
+
+<section class="specband" data-nav="dark" aria-label="Key specs">
+  <div class="wrap">
+    <dl class="specs">
+      <div><dt>15+</dt><dd>stops of dynamic range in S-Log3</dd></div>
+      <div><dt>4K 120p</dt><dd>10-bit 4:2:2, recorded in camera</dd></div>
+      <div><dt>409,600</dt><dd>top expanded ISO, native from 80</dd></div>
+      <div><dt>16-bit</dt><dd>RAW out over HDMI to a recorder</dd></div>
+    </dl>
+    <p class="spec-note">Specs from Sony's published FX3 figures.</p>
   </div>
 </section>
 
@@ -581,5 +511,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="cam3d.js"></script>
 </body>
 </html>
